@@ -55,22 +55,4 @@ class Rwtt_Core_Registry extends Rwtt_Core_AbstractRegistry
     {
         $this->_cache = array();
     }
-
-    private function _dumpTrace($trace)
-    {
-        $str = '<pre>' . PHP_EOL;
-        $str .= 'BACKTRACE: ' . PHP_EOL;
-        foreach ($trace as $step) {
-            $str .= '------------------------------------' . PHP_EOL;
-            foreach ($step as $var => $val) {
-                if (is_object($val)) {
-                    $str .= json_encode(get_object_vars($val)) . PHP_EOL;
-                } else {
-                    $str .= $var . ' => ' . $val . PHP_EOL;
-                }
-            }
-        }
-        $str .= '</pre>';
-        return $str;
-    }
 }
