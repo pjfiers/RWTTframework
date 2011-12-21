@@ -17,6 +17,13 @@ $registry = Rwtt_Core_Registry::getInstance();
 $registry->siteName = 'RWTT: ';
 
 /**
+ * Setup the database
+ */
+$mongo = new Mongo();
+$db = $mongo->runwiththetorch;
+$registry->db = $db;
+
+/**
  * setup HTML DOM
  */
 include_once('app/Layout.php');
@@ -28,10 +35,3 @@ $registry->router = new Rwtt_Core_Router();
 $registry->router->rootPath = '/rwtt_nosql/';
 $registry->router->controller = 'index';
 $registry->router->load();
-
-/**
- * Setup the database
- */
-$mongo = new Mongo();
-$db = $mongo->runwiththetorch;
-$registry->db = $db;
