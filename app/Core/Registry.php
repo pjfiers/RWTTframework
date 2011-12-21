@@ -11,19 +11,15 @@ class Rwtt_Core_Registry extends Rwtt_Core_AbstractRegistry
     {
         if (strlen($var) <= 1) {
             $trace = debug_backtrace();
-            trigger_error(
-                'Registry variable must have a length of 2 or longer'
-                 . $this->_dumpTrace($trace),
-                E_USER_ERROR
+            throw new Exception(
+                'Registry variable must have a length of 2 or longer'                
             );
         }
 
         if ($val===null) {
             $trace = debug_backtrace();
-            trigger_error(
+            throw new Exception(
                 'Trying to store a unexisting value to the registry'
-                 . $this->_dumpTrace($trace),
-                E_USER_NOTICE
             );
             $this->_cache[$var] = null;
             return false;
@@ -36,10 +32,8 @@ class Rwtt_Core_Registry extends Rwtt_Core_AbstractRegistry
     {
         if (!isset($this->_cache[$name])) {
             $trace = debug_backtrace();
-            trigger_error(
+            throw new Exception(
                 'var ' . $name . ' not found in the registry'
-                . $this->_dumpTrace($trace),
-                E_USER_NOTICE
             );
             return null;
         }
