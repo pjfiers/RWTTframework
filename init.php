@@ -3,7 +3,8 @@
  * bootstrap file
  *
  */
-
+$rootPath = '/rwtt_nosql/';
+$baseUrl = 'http://' . $_SERVER['SERVER_NAME'] . $rootPath;
 /**
  * autoload files
  */
@@ -32,6 +33,7 @@ include_once('app/Layout.php');
  * setup Router
  */
 $registry->router = new Rwtt_Core_Router();
-$registry->router->rootPath = '/rwtt_nosql/';
+$registry->rootPath = $rootPath;
+$registry->baseUrl = $baseUrl;
 $registry->router->controller = 'index';
 $registry->router->load();

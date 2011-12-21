@@ -46,5 +46,5 @@ foreach ($navigation as $label => $route) {
     $ahref = $li->appendChild(
         $htmlDom->createElement('a', $label)
     );
-    $ahref->setAttribute('href', $route);
+    $ahref->setAttribute('href', $baseUrl . $route);
 }

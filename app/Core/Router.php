@@ -8,14 +8,12 @@ class Rwtt_Core_Router
     private $_registry;
     private $_path;
     private $_args;
-    public $rootPath;
     public $controller;
     public $action;
 
     public function __construct()
     {
         $this->_registry = Rwtt_Core_Registry::getInstance();
-        $route = str_replace($this->rootPath, '', $_SERVER['REQUEST_URI']);        
     }
 
     public function load()
@@ -36,7 +34,7 @@ class Rwtt_Core_Router
 
     private function _getRoute()
     {
-        $route = str_replace($this->rootPath, '', $_SERVER['REQUEST_URI']);
+        $route = str_replace($this->_registry->rootPath, '', $_SERVER['REQUEST_URI']);
         $routeParts = explode('/', $route);
         if (empty($route)) {
             $route = 'index/index';
