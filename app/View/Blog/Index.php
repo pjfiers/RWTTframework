@@ -1,4 +1,12 @@
 <?php
+/**
+ * RWTT v2
+ *
+ * Index/Index view
+ *
+ * @author PJ Fiers pjfiers@gmail.com
+ * @version 0.1.0
+ */
 $htmlDom = $this->_registry->htmlDom;
 $title = $this->_registry->head->title;
 $titleAppend = $htmlDom->createTextNode($this->title);

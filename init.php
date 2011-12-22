@@ -1,10 +1,19 @@
 <?php
-/* 
- * bootstrap file
+/**
+ * RWTT v2
  *
+ * Initiation  file, sets defaults and loads required objects in the right order
+ *
+ * @author PJ Fiers pjfiers@gmail.com
+ * @version 0.1.0
+ */
+
+/**
+ * pathing vars
  */
 $rootPath = '/rwtt_nosql/';
 $baseUrl = 'http://' . $_SERVER['SERVER_NAME'] . $rootPath;
+
 /**
  * autoload files
  */
@@ -25,7 +34,7 @@ $db = $mongo->runwiththetorch;
 $registry->db = $db;
 
 /**
- * setup HTML DOM
+ * setup HTML DOM and base layout
  */
 include_once('app/Layout.php');
 

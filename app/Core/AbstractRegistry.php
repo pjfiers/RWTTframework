@@ -1,11 +1,27 @@
 <?php
-/* 
- * Registry abstract
+/**
+ * RWTT v2
+ *
+ * Abstract registry object
+ * ensures the registries are correctly instanced
+ *
+ * @author PJ Fiers pjfiers@gmail.com
+ * @version 0.1.0
  */
 abstract class Rwtt_Core_AbstractRegistry
 {
+    /**
+     * list of registries
+     *
+     * @var array
+     */
     protected static $_instances = array();
 
+    /**
+     * gets the correct registry instance
+     *
+     * @return Rwtt_Core_Registry
+     */
     public static function getInstance()
     {
         $class = get_called_class();

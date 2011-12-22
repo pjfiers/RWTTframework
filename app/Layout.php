@@ -1,7 +1,14 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * RWTT v2
+ *
+ * Basic layout
+ * Built using DOMDocument
+ * Stored in the registry so it can be manipulated at any point in the
+ * process
+ *
+ * @author PJ Fiers pjfiers@gmail.com
+ * @version 0.1.0
  */
 
 $htmlDom = new DOMDocument();

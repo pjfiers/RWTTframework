@@ -1,21 +1,57 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * RWTT v2
+ *
+ * Router class
+ * The router fetches the path that is requested
+ * and splits it into controllers, actions and more
+ * afterwards it will load the correct controller
+ * call the requested action
+ * and load the default view that matches the controller/action
+ *
+ * @author PJ Fiers pjfiers@gmail.com
+ * @version 0.1.0
  */
 class Rwtt_Core_Router
 {
+    /**
+     * instance of the registry
+     *
+     * @var Rwtt_Core_Registry
+     */
     private $_registry;
-    private $_path;
-    private $_args;
+    /**
+     * arguments that are requested
+     *
+     * @var array
+     */
+    private $_args = array();
+    /**
+     * called controller
+     *
+     * @var string
+     */
     public $controller;
+    /**
+     * called method
+     *
+     * @var string
+     */
     public $action;
 
+    /**
+     * Constructor
+     * inits object
+     */
     public function __construct()
     {
         $this->_registry = Rwtt_Core_Registry::getInstance();
     }
 
+    /**
+     * Loader
+     * Calls the requested controller/method and includes its view
+     */
     public function load()
     {
         $this->_getRoute();
@@ -32,6 +68,10 @@ class Rwtt_Core_Router
         $this->_registry->view->load();
     }
 
+    /**
+     * Gets and sets the route into the registry
+     * Also sets arguments seperately
+     */
     private function _getRoute()
     {
         $route = str_replace($this->_registry->rootPath, '', $_SERVER['REQUEST_URI']);
@@ -53,6 +93,12 @@ class Rwtt_Core_Router
             $this->action = 'index';
         }
         $this->_registry->route = $routeParts;
+        // split to arguments
+        unset($routeParts[0], $routeParts[1]);
+        if (empty($routeParts)) {
+            $routeParts = array();
+        }
+        $this->_registry->args = $routeParts;
         
     }
 }

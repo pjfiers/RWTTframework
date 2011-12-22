@@ -1,7 +1,13 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * RWTT v2
+ *
+ * Mongo db Blogpost entity
+ * addes new properties
+ * handles specific setters
+ *
+ * @author PJ Fiers pjfiers@gmail.com
+ * @version 0.1.0
  */
 class Rwtt_Entity_BlogPost extends Rwtt_Entity
 {
