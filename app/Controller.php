@@ -12,14 +12,14 @@ Abstract Class Rwtt_Controller
     /**
      * instance of the registry
      *
-     * @var Rwtt_Core_Registry
+     * @var Rwtt_Registry
      */
     protected $_registry;
 
     /**
      * view object
      *
-     * @var Rwtt_Core_View
+     * @var Rwtt_View
      */
     public $view;
 
@@ -27,8 +27,8 @@ Abstract Class Rwtt_Controller
      * Constructor
      */
     public function  __construct() {
-        $this->_registry = Rwtt_Core_Registry::getInstance();
-        $view = new Rwtt_Core_View();
+        $this->_registry = Rwtt_Registry::getInstance();
+        $view = new Rwtt_View();
         $this->view = $view;
     }
 

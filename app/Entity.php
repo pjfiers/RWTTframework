@@ -63,7 +63,7 @@ class Rwtt_Entity
      */
     public function __construct()
     {
-        $registry = Rwtt_Core_Registry::getInstance();
+        $registry = Rwtt_Registry::getInstance();
         $this->_db = $registry->db;
         $collName = $this->_collectionName;
         $this->_collection = $this->_db->$collName;
