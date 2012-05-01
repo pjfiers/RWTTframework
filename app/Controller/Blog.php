@@ -10,11 +10,24 @@
 class Rwtt_Controller_Blog extends Rwtt_Controller
 {
     /**
-     * Index Action
+     * View Action
      * when no other action is specified
      */
+    public function viewAction()
+    {
+        $blogpostId = $this->_registry->args[0];
+        $blogpost = new Rwtt_Entity_BlogPost();
+        $blogpost->loadById($blogpostId);
+        $this->view->title = $blogpost->title;
+        $this->view->content = $blogpost->content;
+    }
+
     public function indexAction()
     {
-        $this->view->title = 'this be my blog';
+        $blogposts = new Rwtt_Entity_Collection_BlogPost();
+        foreach ($blogposts as $post) {
+            $this->view->items = $post;
+        }
+        $this->view->title = 'Blog Index';
     }
 }

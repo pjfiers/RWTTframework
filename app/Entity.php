@@ -121,15 +121,26 @@ class Rwtt_Entity
      */
     public function loadById($id)
     {
+        $allProps = get_class_vars(get_class($this));
         $result = $this->_collection->findOne(
              array('id' => $id),
-             array('id')
+             array_keys($allProps)
         );
         if ($result === null) {
             return false;
         } else {
             $this->_mongoId = $result['_id'];
             $this->_id = $result['id'];
+            // get all props
+            
+            // but not the default ones
+            foreach ($this->_excludeProps as $prop) {
+                unset($allProps[$prop]);
+            }
+            // get all data
+            foreach ($allProps as $prop => $val) {                
+                $this->$prop = $result[$prop];
+            }
             return true;
         }
     }
@@ -183,6 +194,11 @@ class Rwtt_Entity
                 $var . ' is not a valid property of ' . $objName
             );
         }
+    }
+
+    public function __get($var)
+    {
+        return $this->$var;
     }
 
 }

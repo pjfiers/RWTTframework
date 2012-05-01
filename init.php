@@ -9,6 +9,12 @@
  */
 
 /**
+ * read config
+ */
+$configData = parse_ini_file('config.ini', true);
+var_dump($configData);
+
+/**
  * pathing vars
  */
 $rootPath = '/rwtt_nosql/';
@@ -29,9 +35,22 @@ $registry->siteName = 'RWTT: ';
 /**
  * Setup the database
  */
-$mongo = new Mongo();
-$db = $mongo->runwiththetorch;
-$registry->db = $db;
+try {
+    $mongoUrl = $configData['connections']['mongoUrl']
+        . '/' . $configData['connections']['mongoDb'];
+    $url = parse_url($mongoUrl);
+    $dbName = preg_replace('/\/(.*)/', '$1', $url['path']);
+    $mongo = new Mongo($mongoUrl, array('persist' => 'x'));
+    $db = $mongo->$configData['connections']['mongoDb'];
+    $db->authenticate(
+        $configData['connections']['mongoUser'],
+        $configData['connections']['mongoPass']
+    );
+    $registry->db = $db;
+} catch (Exception $e) {
+    echo 'could not establish database connection';
+    echo $e->getMessage();
+}
 
 /**
  * setup HTML DOM and base layout

@@ -57,11 +57,9 @@ class Rwtt_Router
         $this->_getRoute();
         $class = 'Rwtt_Controller_' . ucfirst($this->controller);
         $controller = new $class;
-
-        if (!is_callable(array($controller, $this->action))) {
+        $action = $this->action . 'Action';
+        if (!is_callable(array($controller, $action))) {
             $action = 'indexAction';
-        } else {
-            $action = $this->action . 'Action';
         }
 
         $controller->$action();
@@ -76,14 +74,10 @@ class Rwtt_Router
     {
         $route = str_replace($this->_registry->rootPath, '', $_SERVER['REQUEST_URI']);
         $routeParts = explode('/', $route);
-        if (empty($route)) {
-            $route = 'index/index';
-            $routeParts = explode('/', $route);
-        } else {            
+        if (!empty($routeParts)) {
             $this->controller = $routeParts[0];
-            if (isset($routeParts[1])) {
+            if (!empty($routeParts[1])) {
                 $this->action = strtolower($routeParts[1]);
-                $routeParts[1] = 'index';
             }
         }
         if (empty($this->controller)) {
@@ -93,12 +87,16 @@ class Rwtt_Router
             $this->action = 'index';
         }
         $this->_registry->route = $routeParts;
-        // split to arguments
+        // split to arguments;
         unset($routeParts[0], $routeParts[1]);
         if (empty($routeParts)) {
             $routeParts = array();
         }
-        $this->_registry->args = $routeParts;
+        $arguments = array();
+        foreach ($routeParts as $part) {
+            $arguments[] = $part;
+        }
+        $this->_registry->args = $arguments;
         
     }
 }

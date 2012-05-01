@@ -11,11 +11,12 @@
  */
 class Rwtt_Entity_BlogPost extends Rwtt_Entity
 {
-    protected $_title;
-    protected $_content;
+    protected $title;
+    protected $content;
     protected $_creationDate;
     protected $_updateDate;
     protected $_author;
+    public $id;
 
     public function  __construct() {
         $this->_collectionName = 'blogposts';
