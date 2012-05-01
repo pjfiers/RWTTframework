@@ -41,14 +41,21 @@ try {
     $dbName = preg_replace('/\/(.*)/', '$1', $url['path']);
     $mongo = new Mongo($mongoUrl, array('persist' => 'x'));
     $db = $mongo->$configData['connections']['mongoDb'];
-    $db->authenticate(
+    $auth = $db->authenticate(
         $configData['connections']['mongoUser'],
         $configData['connections']['mongoPass']
     );
     $registry->db = $db;
+    // find shit
+    if (!empty($auth['errmsg'])) {
+        throw new Exception($auth['errmsg']);
+    }
 } catch (Exception $e) {
-    echo 'could not establish database connection';
-    echo $e->getMessage();
+    echo 'could not establish database connection: ';
+    echo $e->getMessage() . PHP_EOL;
+    echo 'in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+    echo $e->getTraceAsString();
+    die();
 }
 
 /**
