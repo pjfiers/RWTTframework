@@ -38,7 +38,6 @@ try {
     $mongoUrl = $configData['connections']['mongoUrl']
         . '/' . $configData['connections']['mongoDb'];
     $url = parse_url($mongoUrl);
-    $dbName = preg_replace('/\/(.*)/', '$1', $url['path']);
     $mongo = new Mongo($mongoUrl, array('persist' => 'x'));
     $db = $mongo->$configData['connections']['mongoDb'];
     $auth = $db->authenticate(
@@ -46,7 +45,7 @@ try {
         $configData['connections']['mongoPass']
     );
     $registry->db = $db;
-    // find shit
+    // check auth
     if (!empty($auth['errmsg'])) {
         throw new Exception($auth['errmsg']);
     }
