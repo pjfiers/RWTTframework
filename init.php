@@ -16,7 +16,7 @@ $configData = parse_ini_file('config.ini', true);
 /**
  * pathing vars
  */
-$rootPath = '/rwtt_nosql/';
+$rootPath = $configData['site']['rootPath'];
 $baseUrl = 'http://' . $_SERVER['SERVER_NAME'] . $rootPath;
 
 /**
