@@ -13,6 +13,12 @@
  */
 $configData = parse_ini_file('config.ini', true);
 
+// devmode errors
+if ($configData['site']['mode'] === 'development') {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 'on');
+}
+
 /**
  * pathing vars
  */

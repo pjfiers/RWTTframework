@@ -9,10 +9,6 @@
  * @version 0.1.0
  */
 
-// devmode errors
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
-
 /**
  * initiate the app
  */
