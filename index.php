@@ -22,4 +22,17 @@ require_once 'init.php';
  * all the magick happpened
  * now write the HTML
  */
-echo $registry->htmlDom->saveHTML();
+if ($registry->route !== false) {
+   echo $registry->htmlDom->saveHTML();
+} else {
+    // or get contents (WIP)
+    $filename = $_SERVER['REQUEST_URI'];
+    $filename = str_replace($registry->rootPath, '', $filename);
+    if (file_exists($filename) && !is_dir($filename)) {
+        $contents = file_get_contents($filename);
+        print $contents;
+    } else {
+        header('location: ' . $registry->baseUrl . '404');
+        exit;
+    }
+}

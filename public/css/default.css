@@ -1,0 +1,21 @@
+/* 
+    Document   : default
+    Created on : 12-jul-2012, 15:11:50
+    Author     : PJ
+    Description:
+        Purpose of the stylesheet follows.
+*/
+* {
+    font-family: verdana;
+}
+root { 
+    display: block;
+}
+
+nav {
+    display: block;
+}
+
+nav a {
+    display: list-item;
+}

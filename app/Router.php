@@ -74,6 +74,10 @@ class Rwtt_Router
     {
         $route = str_replace($this->_registry->rootPath, '', $_SERVER['REQUEST_URI']);
         $routeParts = explode('/', $route);
+        if ($routeParts[0]=='public') {
+            $this->_registry->route = false;
+            return true;
+        }
         if (!empty($routeParts)) {
             $this->controller = $routeParts[0];
             if (!empty($routeParts[1])) {
@@ -98,5 +102,6 @@ class Rwtt_Router
         }
         $this->_registry->args = $arguments;
         
+        return true;
     }
 }
