@@ -46,7 +46,7 @@ $link->setAttribute('rel', 'stylesheet');
 $link->setAttribute('type', 'text/css');
 
 $navigation = array(
-    'Blog' => 'blog'
+    'Blog' => 'index'
 );
 
 foreach ($navigation as $label => $route) {
