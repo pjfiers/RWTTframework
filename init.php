@@ -37,6 +37,7 @@ $autoloader = new Rwtt_Autoloader('app');
 $registry = Rwtt_Registry::getInstance();
 $registry->siteName = 'RWTT: ';
 $registry->baseUrl = $baseUrl;
+$registry->rootPath = $rootPath;
 
 /**
  * Setup the database
@@ -70,10 +71,8 @@ try {
 include_once('app/Layout.php');
 
 /**
- * setup Router
+ * more Router
  */
 $registry->router = new Rwtt_Router();
-$registry->rootPath = $rootPath;
-$registry->baseUrl = $baseUrl;
 $registry->router->controller = 'index';
 $registry->router->load();
