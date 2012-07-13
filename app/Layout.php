@@ -46,7 +46,6 @@ $link->setAttribute('rel', 'stylesheet');
 $link->setAttribute('type', 'text/css');
 
 $navigation = array(
-    'Home' => 'index',
     'Blog' => 'blog'
 );
 

@@ -15,6 +15,11 @@ class Rwtt_Controller_Index extends Rwtt_Controller
      */
     public function indexAction()
     {
-        $this->view->title = 'INDEX PAGE';
+        $blogposts = new Rwtt_Entity_Collection_BlogPost();
+        foreach ($blogposts as $post) {
+            $this->view->items = $post;
+        }
+        $this->view->title = 'Blog Index';
     }
+    
 }
