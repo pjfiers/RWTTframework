@@ -19,7 +19,7 @@ class Rwtt_Controller_Index extends Rwtt_Controller
         foreach ($blogposts as $post) {
             $this->view->items = $post;
         }
-        $this->view->title = 'Blog Index';
+        $this->view->title = 'Blog';
     }
     
 }
