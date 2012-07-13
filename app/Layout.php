@@ -51,7 +51,8 @@ $head->appendChild($link);
 
 // links
 $navigation = array(
-    'Blog' => 'index'
+    'Blog' => 'index',
+    'About' => 'about'
 );
 
 foreach ($navigation as $label => $route) {
