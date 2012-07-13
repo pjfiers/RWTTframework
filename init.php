@@ -36,6 +36,7 @@ $autoloader = new Rwtt_Autoloader('app');
  */
 $registry = Rwtt_Registry::getInstance();
 $registry->siteName = 'RWTT: ';
+$registry->baseUrl = $baseUrl;
 
 /**
  * Setup the database

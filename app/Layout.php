@@ -41,7 +41,7 @@ $registry->head->title = $title;
 // stylesheet
 $link = $htmlDom->createElement('link');
 $head->appendChild($link);
-$link->setAttribute('href', 'public/css/default.css');
+$link->setAttribute('href', $registry->baseUrl . 'public/css/default.css');
 $link->setAttribute('rel', 'stylesheet');
 $link->setAttribute('type', 'text/css');
 
