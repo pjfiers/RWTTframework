@@ -43,7 +43,7 @@ $registry->head->title = $title;
 
 // stylesheet
 $link = Rwtt_Helper_Link::create(
-    $registry->baseUrl . 'public/css/default.css', 
+    $baseUrl . 'public/css/default.css', 
     'stylesheet', 
     'text/css'
 );
@@ -55,8 +55,14 @@ $navigation = array(
 );
 
 foreach ($navigation as $label => $route) {
-    $ahref = $nav->appendChild(
-        $htmlDom->createElement('a', $label)
+    $ahref = Rwtt_Helper_Anchor::create(
+        $label,
+        array(
+            'href' => $baseUrl . $route,
+            'rel' => 'nav'
+        )
     );
-    $ahref->setAttribute('href', $baseUrl . $route);
+    $nav->appendChild(
+        $ahref
+    );
 }

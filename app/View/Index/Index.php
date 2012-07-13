@@ -17,9 +17,11 @@ $h1 = $htmlDom->createElement('h1', $this->title);
 $content->appendChild($h1);
 foreach ($this->items as $item) {
     $h2 = $htmlDom->createElement('h2');
-    $link = $htmlDom->createElement('a', $item['title']);
-    $link->setAttribute('href', 'blog/view/' . $item['id']);
-    $h2->appendChild($link);
+    $ahref = Rwtt_Helper_Anchor::create(
+        $item['title'],
+        array('href' => 'blog/view/' . $item['id'])
+    );
+    $h2->appendChild($ahref);
     $content->appendChild($h2);
     $dateString = 'created on: ' . $item['_creationDate'];
     $date = $content->appendChild(
