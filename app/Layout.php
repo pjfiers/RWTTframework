@@ -10,6 +10,8 @@
  * @author PJ Fiers pjfiers@gmail.com
  * @version 0.1.0
  */
+
+// skeleton
 $htmlDom = new DOMDocument();
 $htmlDom->formatOutput = true;
 $root = $htmlDom->appendChild(
@@ -34,17 +36,20 @@ $registry->head = $head;
 $registry->content = $content;
 $registry->nav = $nav;
 
+// head
 $title = $htmlDom->createElement('title', $registry->siteName);
 $head->appendChild($title);
 $registry->head->title = $title;
 
 // stylesheet
-$link = $htmlDom->createElement('link');
+$link = Rwtt_Helper_Link::create(
+    $registry->baseUrl . 'public/css/default.css', 
+    'stylesheet', 
+    'text/css'
+);
 $head->appendChild($link);
-$link->setAttribute('href', $registry->baseUrl . 'public/css/default.css');
-$link->setAttribute('rel', 'stylesheet');
-$link->setAttribute('type', 'text/css');
 
+// links
 $navigation = array(
     'Blog' => 'index'
 );
